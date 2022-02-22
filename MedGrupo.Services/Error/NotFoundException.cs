@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MedGrupo.Domain.Error
+namespace MedGrupo.Services.Error
 {
     public class NotFoundException : Exception
     {

@@ -28,7 +28,7 @@ namespace MedGrupo.Tests.PessoaTests
             var pessoa = GetPessoaObject();
 
             //Act
-            var result = _pessoaRepository.CreateAsync(pessoa);
+            var result = await _pessoaRepository.CreateAsync(pessoa);
 
             //Assert
             result.Id.Should().BeGreaterThan(0);

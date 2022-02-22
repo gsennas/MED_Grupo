@@ -10,7 +10,6 @@ namespace MedGrupo.Data.Interfaces
 
         Task<Pessoa> GetIdAsync(int? id);
 
-
         Task<Pessoa> CreateAsync(Pessoa pessoa);
 
         Task<Pessoa> EditAsync(Pessoa pessoa);

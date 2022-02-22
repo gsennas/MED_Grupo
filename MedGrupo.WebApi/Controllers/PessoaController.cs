@@ -1,5 +1,5 @@
-﻿using MedGrupo.Domain.Error;
-using MedGrupo.Services.DTO;
+﻿using MedGrupo.Services.DTO;
+using MedGrupo.Services.Error;
 using MedGrupo.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;

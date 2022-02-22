@@ -1,7 +1,7 @@
 ﻿using MedGrupo.Data.Interfaces;
 using MedGrupo.Domain.Entities;
-using MedGrupo.Domain.Error;
 using MedGrupo.Services.DTO;
+using MedGrupo.Services.Error;
 using MedGrupo.Services.Interfaces;
 using MedGrupo.Services.Validations;
 using System.Collections.Generic;
@@ -30,7 +30,7 @@ namespace MedGrupo.Services.Services
                 Nome = x.Nome,
                 Sexo = x.Sexo,
                 Status = x.Status
-            }).ToList();
+            }).Where(x => x.Status == true).ToList();
         }
 
         public async Task<PessoaDTO> GetIdAsync(int id)
@@ -43,6 +43,7 @@ namespace MedGrupo.Services.Services
         {
             var pessoaDTO = new PessoaDTO()
             {
+                Id = pessoa.Id,
                 Nome = pessoa.Nome,
                 Idade = Validation.CalculaIdade(pessoa.DataNascimento),
                 Status = pessoa.Status,
@@ -85,8 +86,8 @@ namespace MedGrupo.Services.Services
         {
             var pessoa = TrasformaDTO(pessoaDTO);
             pessoa.Status = true;
-            pessoa.Idade = pessoa.CalculaIdade();
-            var result = pessoa.ValidarDados();
+            pessoa.Idade = Validation.CalculaIdade(pessoaDTO.DataNascimento);
+            var result = Validation.ValidarDados(pessoa);
             if (!result.Valido) 
             {
                 pessoaDTO.MsgError = result.Erro;
@@ -100,8 +101,8 @@ namespace MedGrupo.Services.Services
         public async Task<PessoaDTO> EditAsync(PessoaDTO pessoaDTO)
         {
             var pessoa = TrasformaDTOID(pessoaDTO);
-            pessoa.Idade = pessoa.CalculaIdade();
-            var result = pessoa.ValidarDados();
+            pessoa.Idade = Validation.CalculaIdade(pessoa.DataNascimento);
+            var result = Validation.ValidarDados(pessoa);
             if (!result.Valido)
             {
                 pessoaDTO.MsgError = result.Erro;

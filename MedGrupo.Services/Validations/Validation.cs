@@ -1,4 +1,5 @@
-﻿using MedGrupo.Services.DTO;
+﻿using MedGrupo.Domain.Entities;
+using MedGrupo.Services.DTO;
 using MedGrupo.Services.Error;
 using System;
 
@@ -15,7 +16,7 @@ namespace MedGrupo.Services.Validations
             }
             return idade;
         }
-        public static ErrorMessage ValidarDados(PessoaDTO obj)
+        public static ErrorMessage ValidarDados(Pessoa obj)
         {
             var validacao = new ErrorMessage() { Valido = true };
 
